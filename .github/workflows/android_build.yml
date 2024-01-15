@@ -18,9 +18,10 @@ jobs:
     steps:
       - name: Set up our JDK environment # setup JDK environment: mandatory as we need to build  android project
         uses: actions/setup-java@v4
-          with:
-            distribution: 'temurin'
-            java-version: '21'
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+            
       - uses: actions/checkout@v3
       - name: Install npm dependencies
         run: |
