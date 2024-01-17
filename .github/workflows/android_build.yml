@@ -1,11 +1,12 @@
-name: react-native-android-build-apk
+name: Android Build
 on:
-  workflow_dispatch: # To trigger manual build
-  push:
-    branches:
-      - main
+    pull_request:
+      types:
+        - opened
+      branches:
+        - 'main'
 jobs:
-  install-and-test:
+  install-dependencies:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,7 +14,7 @@ jobs:
         run: |
           npm install
   build-android:
-    needs: install-and-test
+    needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Set up our JDK environment # setup JDK environment: mandatory as we need to build  android project
