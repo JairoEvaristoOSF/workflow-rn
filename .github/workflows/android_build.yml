@@ -30,17 +30,20 @@ jobs:
           npm install
       - name: Build Android Release APK
         run: |
-          cd android && ./gradlew clean && ./gradlew assembleRelease
+          cd android && ./gradlew assembleRelease
       - name: Build Android Release AAB
         run: |
-          cd android && ./gradlew clean && ./gradlew bundleRelease
-      - name: Upload Artifact
+          cd android && ./gradlew bundleRelease
+      - name: Upload Artifact APK
         uses: actions/upload-artifact@v1
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
-      - name: Upload Artifact
+      - name: Upload Artifact AAB
         uses: actions/upload-artifact@v1
         with:
           name: app-release.aab
           path: android/app/build/outputs/bundle/release/
+      - name: Clean build android
+        run: |
+          cd android && ./gradlew clean
